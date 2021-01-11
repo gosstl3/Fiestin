@@ -1,7 +1,7 @@
 <?php
    // Para que el framework funcione de manera correcta en un hosting hay que modificar la ruta de busquedas
    //const BASE_URL = "https://www.hosting.com/MVCFramework_R/";  
-   const BASE_URL = "http://localhost/MRT/";
+   const BASE_URL = "http://localhost/Fiestin/";
 
    //Zona horaria 
    date_default_timezone_set('America/Mexico_City');
