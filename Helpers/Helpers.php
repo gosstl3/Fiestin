@@ -9,7 +9,7 @@ function base_url()
 //Ruta a la carpeta Assets
 function media()
 {
-    return BASE_URL."/Assets";
+    return BASE_URL."Assets";
 }
 
 //Manda invocar la vista recibe como parametro $data, se utiliza para pooder utilizar las variables del controlador
@@ -43,7 +43,7 @@ function getModal(string $nameModal, $data)
 
 //Elimina exceso de espacios entre palabras, evita inyecciones de sql
 //Diccionario de filtros SQL
-function striClean($strCadena)
+function strClean($strCadena)
 {
     $string = preg_replace(['/\s+/', '/^\s|\s$/'], [' ', ''], $strCadena);
     $string = trim($string); //Elimina los espacios en blanco al inicio y al final
