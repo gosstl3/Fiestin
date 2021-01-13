@@ -3,3 +3,17 @@
     background: gray;
     padding: 6px;
 }
+
+.headerReister{
+    background: #009688;
+    color: #fff;
+}
+
+.headerUpdate{
+    background: #007bff;
+    color: #fff;
+}
+
+.noteBlock{
+    display: none;
+}
