@@ -30,7 +30,7 @@
         </li>
         <li>
             <a class="app-menu__item" href="<?= base_url(); ?>productos">
-                <i class="app-menu__icon fa fa-file-code-o"></i>
+                </i><i class=" app-menu__icon fas fa-cubes"></i>
                 <span class="app-menu__label">Productos</span>
             </a>
         </li>
@@ -54,7 +54,7 @@
         </li>
         <li>
             <a class="app-menu__item" href="<?= base_url(); ?>logout">
-                <i class="app-menu__icon fa fa-file-code-o"></i>
+                <i class="app-menu__icon fas fa-door-open"></i>
                 <span class="app-menu__label">Logout</span>
             </a>
         </li>

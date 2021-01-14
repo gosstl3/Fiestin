@@ -55,27 +55,46 @@ class RolesModel extends Mysql
         return $return;
     }
 
-    public function deleteRol(int $idrol)
-		{
-			$this->intIdrol = $idrol;
-			$sql = "SELECT * FROM persona WHERE rolid = $this->intIdrol";
-			$request = $this->select_all($sql);
-			if(empty($request))
-			{
-				$sql = "UPDATE rol SET status = ? WHERE idrol = $this->intIdrol ";
-				$arrData = array(0);
-				$request = $this->update($sql,$arrData);
-				if($request)
-				{
-					$request = 'ok';	
-				}else{
-					$request = 'error';
-				}
-			}else{
-				$request = 'exist';
-			}
-			return $request;
-		}
+	public function updateRol(int $idrol, string $rol, string $descripcion, int $status){
+        $this->intIdrol = $idrol;
+        $this->strRol = $rol;
+        $this->strDescripcion = $descripcion;
+        $this->intEstatus = $status;
 
+        $sql = "SELECT * FROM rol WHERE nombrerol = '$this->strRol' AND idrol != $this->intIdrol";
+        $request = $this->select_all($sql);
+
+        if(empty($request))
+        {
+            $sql = "UPDATE rol SET nombrerol = ?, descripcion = ?, status = ? WHERE idrol = $this->intIdrol ";
+            $arrData = array($this->strRol, $this->strDescripcion, $this->intEstatus);
+            $request = $this->update($sql,$arrData);
+        }else{
+            $request = "exist";
+        }
+        return $request;			
+    }
+
+    public function deleteRol(int $idrol)
+    {
+        $this->intIdrol = $idrol;
+        $sql = "SELECT * FROM persona WHERE rolid = $this->intIdrol";
+        $request = $this->select_all($sql);
+        if(empty($request))
+        {
+            $sql = "UPDATE rol SET status = ? WHERE idrol = $this->intIdrol ";
+            $arrData = array(0);
+            $request = $this->update($sql,$arrData);
+            if($request)
+            {
+                $request = 'ok';	
+            }else{
+                $request = 'error';
+            }
+        }else{
+            $request = 'exist';
+        }
+        return $request;
+    }
 }
 ?>

@@ -30,19 +30,36 @@ class Roles extends Controllers
 
             $arrData[$i]['options'] = '<div class="text-center">
 
-            <button class="btn btn-secondary btn-sm btnPermisosRol" rl="' . $arrData[$i]['idrol'] . '" title="Permisos"><i class="fas fa-key"></i></button>
+            <button class="btn btn-secondary btn-sm btnPermisosRol" onClick="fntPermisos(' . $arrData[$i]['idrol'] . ')" title="Permisos"><i class="fas fa-key"></i></button>
 
-            <button class="btn btn-primary btn-sm btnEditRol" rl="' . $arrData[$i]['idrol'] . '" title="Editar"><i class="fas fa-pencil-alt"></i></button>
+            <button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol(' . $arrData[$i]['idrol'] . ')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
 
-            <button class="btn btn-danger btn-sm btnDelRol" rl="' . $arrData[$i]['idrol'] . '" title="Eliminar"><i class="far fa-trash-alt"></i></button>
+            <button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol(' . $arrData[$i]['idrol'] . ')" title="Eliminar"><i class="far fa-trash-alt"></i></button>
+            </div>';
 
         
-            </div>';
+            
             
         }
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function getSelectRoles()
+		{
+			$htmlOptions = "";
+			$arrData = $this->model->selectRoles();
+			if(count($arrData) > 0 ){
+				for ($i=0; $i < count($arrData); $i++) { 
+					if($arrData[$i]['status'] == 1 ){
+					$htmlOptions .= '<option value="'.$arrData[$i]['idrol'].'">'.$arrData[$i]['nombrerol'].'</option>';
+					}
+				}
+			}
+			echo $htmlOptions;
+			die();		
+		}
+
 
     public function getRol(int $idrol)
     {
@@ -59,27 +76,42 @@ class Roles extends Controllers
         die();
     }
 
-    public function setRol()
-    {
-        //esta funcion manda llamar el cleaner que esta en helpers 
-        $strRol = strClean($_POST['txtNombre']);
-        $strDescription = strClean($_POST['txtDescripcion']);
-        $intEstatus = intval($_POST['listStatus']);
-        $request_rol = $this->model->insertRol($strRol, $strDescription, $intEstatus);
+    public function setRol(){
+			
+        $intIdrol = intval($_POST['idRol']);
+        $strRol =  strClean($_POST['txtNombre']);
+        $strDescipcion = strClean($_POST['txtDescripcion']);
+        $intStatus = intval($_POST['listStatus']);
 
-        if ($request_rol > 0) {
-            $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-        } else if ($request_rol == 'exist') {
-
-            $arrResponse = array('status' => false, 'msg' => '¡Atencion el Rol ya existe.');
-        } else {
-
-            $arrResponse = array('status' => false, 'msg' => 'No es posible almacenar los datos');
+        if($intIdrol == 0)
+        {
+            //Crear
+            $request_rol = $this->model->insertRol($strRol, $strDescipcion,$intStatus);
+            $option = 1;
+        }else{
+            //Actualizar
+            $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescipcion, $intStatus);
+            $option = 2;
         }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+
+        if($request_rol > 0 )
+        {
+            if($option == 1)
+            {
+                $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+            }else{
+                $arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
+            }
+        }else if($request_rol == 'exist'){
+            
+            $arrResponse = array('status' => false, 'msg' => '¡Atención! El Rol ya existe.');
+        }else{
+            $arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+        }
+        echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
         die();
     }
-
+    
     public function delRol()
 		{
 			if($_POST){
