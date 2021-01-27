@@ -76,13 +76,14 @@ class Roles extends Controllers
         die();
     }
 
+    //Crear roles
     public function setRol(){
 			
         $intIdrol = intval($_POST['idRol']);
         $strRol =  strClean($_POST['txtNombre']);
         $strDescipcion = strClean($_POST['txtDescripcion']);
         $intStatus = intval($_POST['listStatus']);
-
+        
         if($intIdrol == 0)
         {
             //Crear

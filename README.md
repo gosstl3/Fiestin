@@ -1,2 +1,4 @@
 # Fiestin
- Control de almacen para Servifiestas Chano
+    Modulos de desarrollo
+    Sistema de roles de usuario y permisos 
+    

@@ -5,10 +5,10 @@
 		public $intIdpermiso;
 		public $intRolid;
 		public $intModuloid;
-		public $r;
-		public $w;
-		public $u;
-		public $d;
+		public $r; //read
+		public $w; //write
+		public $u; //update
+		public $d; //delete
 
 		public function __construct()
 		{

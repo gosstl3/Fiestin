@@ -13,7 +13,7 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/roles"><?= $data['page_title'] ?></a></li>
+          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/proveedor"><?= $data['page_title'] ?></a></li>
         </ul>
       </div>
       <div class="row">
@@ -26,13 +26,12 @@
                     <tr>
                       <th>ID</th>
                       <th>Nombre</th>
-                      <th>Descripcion</th>
-                      <th>Estatus</th>
-                      <th>Acciones</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-
+                      <td>1</td>
+                      <TD>Don Cayo</TD>
                   </tbody>
                 </table>
               </div>

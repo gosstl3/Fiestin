@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   formRol.onsubmit = function(e){
     e.preventDefault();
 
+    var intIdRol = document.querySelector('#idRol').value;
     var strNombre = document.querySelector('#txtNombre').value;
     var strDescripcion = document.querySelector('#txtDescripcion').value;
     var intEstatus = document.querySelector('#listStatus').value;
@@ -54,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
           formRol.reset();
           swal("Roles de usaurio", objData.msg, "success");
           tableRoles.api().ajax.reload(function(){
+            //llamado a la funcion de evento de evento 
+              fntEditRol();
           });
         }else{
             swal("Error", objData.msg, "error");
@@ -134,6 +137,14 @@ function fntEditRol(idrol){
 
 function fntDelRol(idrol){
   var idrol = idrol;
+  /*
+  var btnDelRol = document.querySelector("btnDelRol");
+  btnDelRol.forEach(function(btnDelRol){
+    btnDelRol.addEventListener("click", function(){
+      var idrol = this.getAttribute("rl");
+    })
+  });
+ */
   swal({
       title: "Eliminar Rol",
       text: "¿Realmente quiere eliminar el Rol?",

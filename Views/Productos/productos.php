@@ -27,11 +27,14 @@
                       <th>ID</th>
                       <th>Nombre</th>
                       <th>Descripcion</th>
-                      <th>Estatus</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <td>1</td>
+                    <td>Tequila</td>
+                    <td>añejo</td>
+                    
 
                   </tbody>
                 </table>
